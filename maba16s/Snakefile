@@ -34,7 +34,7 @@ localrules: all, download_kraken2_db, combinereads
 rule all:
     input:
         expand(OUTDIR + 'BLAST/{sample}', sample=SAMPLES),
-        expand(OUTDIR + "reports/{sample}.xls", sample=SAMPLES)
+        expand(OUTDIR + "reports/{sample}.xlsx", sample=SAMPLES)
 
 
 rule download_kraken2_db:
@@ -160,7 +160,7 @@ rule generate_reports:
         blast = rules.blast_consensus_genera.output,
         readcount = rules.strip_genera.output
     output:
-        OUTDIR + "reports/{sample}.xls"
+        OUTDIR + "reports/{sample}.xlsx"
     threads: 1
     conda:
         "envs/kraken2.yaml" # this env has pandas
